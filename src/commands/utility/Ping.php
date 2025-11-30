@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * Copyright © 2025-present bariscodefx
+ * 
+ * This file part of project NovaGuard Discord Bot.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace novaguard\commands;
+
+use Discord\Parts\Embed\Embed;
+
+/**
+ * Ping
+ */
+class Ping extends Command
+{
+    /**
+     * Latest ping from Discord gateway
+     *
+     * @var integer
+     */
+    protected ?int $lastPing = null;
+
+    /**
+     * configure
+     *
+     * @return void
+     */
+    public function configure(): void
+    {
+        $this->command = "ping";
+        $this->description = "Displays bot's latency.";
+        $this->aliases = ["latency", "ms"];
+        $this->category = "utility";
+        
+        $this->discord->on('heartbeat-ack', function($time) {
+            $this->lastPing = intval($time);
+        });
+    }
+
+    /**
+     * handle
+     *
+     * @param [type] $msg
+     * @param [type] $args
+     * @return void
+     */
+    public function handle($msg, $args): void
+    {
+        global $language;
+        $msg->reply(sprintf($language->getTranslator()->trans('commands.ping.reply'), $this->lastPing ?? "..."));
+    }
+}

@@ -1,0 +1,11 @@
+/vendor/
+.env
+.env*
+nohup*
+composer.phar
+/.idea/
+phpDocumentor.php
+db-settings.inc
+.phpunit*
+build/
+bot.log

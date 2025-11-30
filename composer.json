@@ -1,0 +1,41 @@
+{
+    "name": "novaguard-team/novaguard-bot",
+    "description": "A discord bot written in PHP",
+    "authors": [
+        {
+            "name": "bariscodefx",
+            "email": "bariscodefx@protonmail.com"
+        },
+        {
+            "name": "CYB3R73",
+            "email": "lesterazat733@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "build": "mkdir -p build && cd build && ../vendor/bin/phar-composer build .."
+    },
+    "type": "project",
+    "license": "apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "novaguard\\": "src/",
+            "novaguard\\tests\\": "tests/novaguard/"
+        }
+    },
+    "bin": ["bot.php"],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.0",
+        "team-reflex/discord-php": "dev-master",
+        "vlucas/phpdotenv": "^5.3",
+        "wujunze/php-cli-color": "dev-master",
+        "symfony/translation": "^6.3.3",
+        "symfony/yaml": "^7.0.0",
+        "bariscodefx/php-hashmap": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0",
+        "clue/phar-composer": "^1.4"
+    }
+}

@@ -1,0 +1,1 @@
+php .\bot.php --shard-count 1 --shard-id 0
